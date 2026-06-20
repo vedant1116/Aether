@@ -10,8 +10,19 @@ const httpServer = http.createServer(app)
 
 initSocket(httpServer)
 
-httpServer.listen(3000,()=>{
-    console.log("server started running on port 3000")
+const PORT = process.env.PORT || 3000
+
+httpServer.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use. Make sure no other process is using the port, or set PORT in your environment.`)
+        process.exit(1)
+    }
+    console.error('Server error:', err)
+    process.exit(1)
+})
+
+httpServer.listen(PORT, () => {
+    console.log(`server started running on port ${PORT}`)
 })
 
 connectToDb()

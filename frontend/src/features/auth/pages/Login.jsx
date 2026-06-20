@@ -28,7 +28,7 @@ const Login = () => {
    }
    
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-[#F9AC33] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="bg-gray-800 bg-opacity-90 rounded-lg shadow-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-white text-center mb-8">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -66,7 +66,7 @@ const Login = () => {
           >
             Login
           </button>
-          <p >New user? <Link to='/register' className='text-lg'>Register</Link></p>
+          <p className='text-white'>New user? <Link to='/register' className='text-lg'>Register</Link></p>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import userModel from "../models/user.model.js"
 import jwt from "jsonwebtoken";
-// import { sendEmail } from "../services/mail.service.js";
+import { sendEmail } from "../services/mail.service.js";
 
 import dotenv from "dotenv";
 dotenv.config()
@@ -30,17 +30,17 @@ const emailVerificationToken= jwt.sign({
 },process.env.JWT_SECRET)
 await sendEmail({
     to:email,
-    subject:"Welcome to perplexity!",
+    subject:"Welcome to my Aether!",
      html: ` <p>Hi ${username},</p>
-                <p>Thank you for registering at <strong>Perplexity</strong>. We're excited to have you on board!</p>
+                <p>Thank you for registering at <strong>Aether</strong>. We're excited to have you on board!</p>
                 <p>Please verify your email address by clicking the link below:</p>
                 <a href="http://localhost:3000/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a>
                 <p>If you did not create an account, please ignore this email.</p>
-                <p>Best regards,<br>The Perplexity Team</p>
+                <p>Best regards,<br>The Aether team</p>
         `
           
 })
-
+//  sendEmail()
  res.status(201).json({     
     message:"User registered successfully",
     success:true,
@@ -104,10 +104,11 @@ export async function login(req,res){
 }
 
 export async function getMe(req,res){
+    
     const userId= req.user.id;
 
     const user = await userModel.findById(userId).select("-password");
-
+    // console.log(user);
     if(!user){
          return res.status(404).json({
             message: "User not found",

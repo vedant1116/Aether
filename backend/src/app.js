@@ -12,9 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(morgan("dev"));
 app.use(cors({
-     origin:"http://localhost:5173",
+     origin:process.env.CLIENT_URL,
      credentials:true,
 }))
+app.use(express.static("./public/dist"))
 
 app.get("/", (req, res) => {
     res.json({ message: "Server is running" });

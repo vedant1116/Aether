@@ -12,11 +12,11 @@ const transporter = nodemailer.createTransport({
     refreshToken:process.env.REFRESH_TOKEN
   }
 });
-// console.log({
-//   GOOGLE_USER: process.env.GOOGLE_USER,
-//   CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-//   REFRESH: process.env.GOOGLE_REFRESH_TOKEN,
-// });
+console.log({
+  GOOGLE_USER: process.env.GOOGLE_USER,
+  CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  REFRESH: process.env.GOOGLE_REFRESH_TOKEN,
+});
 
 transporter
   .verify()
