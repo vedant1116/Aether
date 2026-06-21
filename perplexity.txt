@@ -1,5 +1,0 @@
-Authentication
-chat with ai
-chat history
-message history
-ai with iternet research feature
