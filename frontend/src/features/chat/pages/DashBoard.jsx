@@ -50,23 +50,23 @@ const Dashboard = () => {
           <div className='space-y-2 flex-1 overflow-y-auto pr-2 scrollbar-hide'>
             {Object.values(chats)
               .sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated))
-              .map((chat, index) => (
+              .map((item, index) => (
                 <div
-                  key={index}
+                  key={item.id || index}
                   className='flex items-center justify-between rounded-xl border border-white/60 bg-transparent px-3 py-2 text-base font-medium text-white/90 transition hover:border-white hover:text-white'
                 >
                   <button
                     type='button'
-                    onClick={() => { openChat(chat.id) }}
+                    onClick={() => { openChat(item.id) }}
                     className='text-left text-base font-medium text-white/90 transition hover:text-white'
                   >
-                    {chat.title}
+                    {item.title}
                   </button>
                   <button
                     type='button'
                     onClick={(event) => {
                       event.stopPropagation()
-                      chat.handleDeleteChat(chat.id)
+                      chat.handleDeleteChat(item.id)
                     }}
                     className='ml-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white opacity-70 transition hover:border-white hover:bg-red-600 hover:text-white hover:opacity-100'
                     aria-label='Delete chat'

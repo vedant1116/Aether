@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+
 const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { handleRegister } = useAuth()
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       username,
       email,
       password
     }
-    console.log('Register attempt:', { email, username, password });    
+    const result = await handleRegister(payload)
+    if (result?.success) {
+      navigate('/login')
+    }
   };
 
   return (

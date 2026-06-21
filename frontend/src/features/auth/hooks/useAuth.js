@@ -10,10 +10,12 @@ export function useAuth(){
     async function handleRegister({email,username,password}){
         try{
          dispatch(setLoading(true))
-         await register ({email,username,password})
+         const data = await register({email,username,password})
+         return { success: true, data }
         }
         catch(error){
         dispatch(setError(error.response?.data?.message || "Registration failed"))
+        return { success: false, error }
         }
         finally{
         dispatch(setLoading(false))

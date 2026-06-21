@@ -117,8 +117,6 @@ export const useChat = ()=>{
     }
 
     async function handleDeleteChat(chatId) {
-        if (!window.confirm("Delete this chat?")) return
-
         dispatch(setIsLoading(true))
         try {
             await deleteChat(chatId)
